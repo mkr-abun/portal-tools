@@ -1,4 +1,4 @@
-import puppeteer, { Browser, Page, PDFOptions } from 'puppeteer';
+import puppeteer, { Browser, Page, PDFOptions } from 'puppeteer-core'
 
 export interface PDFGenerationOptions {
     html: string;
