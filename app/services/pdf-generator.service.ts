@@ -1,4 +1,5 @@
 import puppeteer, { Browser, Page, PDFOptions } from 'puppeteer-core'
+import chromium from '@sparticuz/chromium'
 
 export interface PDFGenerationOptions {
     html: string;
@@ -41,7 +42,8 @@ export class PDFGeneratorService {
 
             // Create a fresh browser instance for each request to avoid connection issues
             browser = await puppeteer.launch({
-                headless: false,
+                executablePath: await chromium.executablePath(),
+                headless: 'shell',
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
@@ -51,7 +53,8 @@ export class PDFGeneratorService {
                     '--disable-background-timer-throttling',
                     '--disable-backgrounding-occluded-windows',
                     '--disable-renderer-backgrounding',
-                    '--no-first-run'
+                    '--no-first-run',
+                    ...chromium.args
                 ],
                 timeout: 30000
             });
