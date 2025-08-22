@@ -41,7 +41,7 @@ export class PDFGeneratorService {
 
             // Create a fresh browser instance for each request to avoid connection issues
             browser = await puppeteer.launch({
-                headless: true,
+                headless: false,
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
